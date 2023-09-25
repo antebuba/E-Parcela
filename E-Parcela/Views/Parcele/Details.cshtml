@@ -1,0 +1,69 @@
+﻿@model Parcele
+
+@{
+    ViewData["Title"] = "Parcela details";
+}
+
+<div class="row">
+    <div class="col-md-8 offset-2">
+        <div class="card mb-12">
+            <div class="row g-0">
+                <div class="col-md-12">
+                    <div class="card-header text-white" style="background-color:lightgreen">
+                        <p class="card-text">
+                            <h5 class="card-title">
+                                @Model.Name
+                            </h5>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <img src="@Model.ImageURL" width="100%" alt="@Model.Name">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body" style="background-color:green">
+                        <p class="card-text">@Model.Description</p>
+                        <p class="card-text">
+                            <b>Trgovina: </b>
+                            <a asp-controller="Suradnici" asp-action="Details" asp-route-id="@Model.SuradniciID">
+                                @Model.Suradnici.Name
+                            </a>
+                        </p>
+                        <p class="card-text">
+                            <b>Proizvođač: </b>
+                            <a asp-controller="Zaposlenici" asp-action="Details" asp-route-id="@Model.ZaposleniciID">
+                                @Model.Zaposlenici.FullName
+                            </a>
+                        </p>
+                        <p class="card-text"><b>Kategorija: </b>@Model.ParcelaCategory</p>
+                        <p class="card-text"><b>Datum početka: </b>@Model.StartDate</p>
+                        <p class="card-text"><b>Datum kraja: </b>@Model.EndDate</p>
+                        <p class="card-text ">
+                            
+                        </p>
+                        <p class="card-text">
+                            <b>Sadnice: </b>
+                            <hr />
+                            <div class="row">
+                                @foreach (var sadnice in Model.Sadnice_Parcele)
+                                {
+                                    <div class="column text-center">
+                                        <img class="border-info rounded-circle" src="@sadnice.Sadnice.ProfilePictureURL" style="max-width: 150px" />
+                                        <br />
+                                        <a asp-controller="Actors" asp-action="Details" asp-route-id="@sadnice.SadniceID">@sadnice.Sadnice.FUllName</a>
+                                    </div>
+                                }
+                            </div>
+                        </p>
+
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="card-footer">
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
